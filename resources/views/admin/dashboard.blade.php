@@ -4,53 +4,107 @@
 
 @section('content')
 
-    {{-- <div class="d-flex gap-2 " style="flex-wrap: wrap"> --}}
-        {{-- <div class="col-3">
-            <div class="card" style="width: 16rem;">
-                <img src="https://placebear.com/800/600" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Data Mahasiswa</h5>
-                <p class="card-text">Data mahasiswa dari program studi teknik komputer angkatan 2023</p>
-                <a href="/admin/data-mahasiswa" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 16rem;">
-                <img src="https://placebear.com/800/600" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Data Quesioner</h5>
-                <p class="card-text">Data mahasiswa dari program studi teknik komputer angkatan 2023</p>
-                <a href="/admin/quesioner" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 16rem;">
-                <img src="https://placebear.com/800/600" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Data Peminatan</h5>
-                <p class="card-text">Data mahasiswa dari program studi teknik komputer angkatan 2023</p>
-                <a href="/admin/peminatan" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div> --}}
+<div class="row">
 
-        <div class="col-lg-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Bar Chart
-                </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    {{-- TOTAL TRANSAKSI --}}
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body">
+                <h6 class="text-muted">Total Transaksi</h6>
+                <h3 class="fw-bold">{{ $totalTransaksi }}</h3>
             </div>
         </div>
+    </div>
 
-        <input type="hidden" class="d-none" value="{{ $dataNetw }}" id="dataNetw">
-        <input type="hidden" class="d-none" value="{{ $dataIntell }}" id="dataIntell">
-        <input type="hidden" class="d-none" value="{{ $dataEmbedd }}" id="dataEmbedd">
-    {{-- </div> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/assets/demo/chart-bar-demo.js') }}"></script>
+    {{-- TOTAL PENDAPATAN --}}
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body">
+                <h6 class="text-muted">Total Pendapatan</h6>
+                <h3 class="fw-bold text-success">
+                    Rp {{ number_format($totalPendapatan) }}
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    {{-- TOTAL MAKANAN --}}
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body">
+                <h6 class="text-muted">Jumlah Makanan</h6>
+                <h3 class="fw-bold">{{ $totalMakanan }}</h3>
+            </div>
+        </div>
+    </div>
+
+    {{-- TOTAL MINUMAN --}}
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 mb-3">
+            <div class="card-body">
+                <h6 class="text-muted">Jumlah Minuman</h6>
+                <h3 class="fw-bold">{{ $totalMinuman }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{-- TRANSAKSI TERBARU --}}
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header fw-bold bg-white">
+        🧾 Transaksi Terbaru
+    </div>
+    <div class="card-body table-responsive">
+
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Kode Transaksi</th>
+                    <th>Item</th>
+                    <th>Jenis</th>
+                    <th>Qty</th>
+                    <th>Jumlah</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($latestOrders as $row)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $row->kode_transaksi }}</td>
+                    <td>{{ $row->detail }}</td>
+                    <td>
+                        @if($row->makanan_id)
+                            <span class="badge bg-success">Makanan</span>
+                        @else
+                            <span class="badge bg-info">Minuman</span>
+                        @endif
+                    </td>
+                    <td>{{ $row->qty }}</td>
+                    <td>Rp {{ number_format($row->jumlah_harga) }}</td>
+                    <td>
+                        <span class="badge bg-secondary">
+                            {{ $row->ket }}
+                        </span>
+                    </td>
+                    <td>
+                        {{ $row->created_at->format('d-m-Y H:i') }}
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="8" class="text-center text-muted">
+                        Belum ada transaksi
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
 @endsection

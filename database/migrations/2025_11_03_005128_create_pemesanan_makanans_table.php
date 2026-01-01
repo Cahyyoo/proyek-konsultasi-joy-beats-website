@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string("barcode_id");
             $table->string("makanan_id");
             $table->string("minuman_id");
-            $table->string("jumlah");
+            $table->string("qty");
+            $table->string("jumlah_harga");
             $table->string("detail");
+            $table->string("ket");
             $table->timestamps();
         });
     }

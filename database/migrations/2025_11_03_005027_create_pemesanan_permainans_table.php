@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pemesanan_permainans', function (Blueprint $table) {
             $table->id();
             $table->string("permainan_id");
-            $table->string("user_id");
+            $table->string("nama");
             $table->date("tanggal");
             $table->string("jam_mulai");
             $table->string("jam_selesai");

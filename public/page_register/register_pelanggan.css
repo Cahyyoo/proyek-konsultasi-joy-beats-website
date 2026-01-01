@@ -1,0 +1,254 @@
+/* --- Palet Warna --- */
+:root {
+  --color-dark-blue: #0f1a2a;
+  --color-light-blue: #1a3250;
+  --color-orange: #ff5722;
+  --color-yellow: #ffc107;
+  --color-white: #ffffff;
+  --color-text-light: #e0e0e0;
+  --color-text-dark: #343a40;
+  --color-section-bg-light: #f8f9fa;
+}
+
+/* --- Global Styling --- */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url("background.png") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* --- Tombol (CTA) Styling --- */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-yellow {
+  background-color: var(--color-yellow);
+  color: var(--color-text-dark);
+  width: 100%;
+  font-size: 1em;
+  padding: 14px 0;
+}
+
+.btn-yellow:hover {
+  background-color: #e0ac00;
+  transform: translateY(-2px);
+}
+
+.btn-orange {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  border: none;
+}
+
+.btn-orange:hover {
+  background-color: #e64a19;
+  transform: translateY(-2px);
+}
+
+/* --- Ini adalah styling header --- */
+.main-header {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+.main-header .container {
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  vertical-align: middle;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-yellow);
+}
+
+.nav-links .btn {
+  margin-left: 30px;
+  padding: 8px 20px;
+  font-size: 0.9em;
+  width: auto;
+}
+
+.nav-links a.btn-yellow:hover {
+  color: var(--color-text-dark);
+}
+
+.nav-links a.btn-orange:hover {
+  color: var(--color-white);
+}
+
+/* --- Ini adalah styling kartu register --- */
+.register-card {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 95%;
+  overflow: hidden;
+}
+
+.register-header {
+  background-color: var(--color-yellow);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.register-logo {
+  height: 75px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.register-body {
+  padding: 35px;
+}
+
+.register-body h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: var(--color-dark-blue);
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  color: #888;
+  font-size: 1em;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 20px 15px 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: var(--color-section-bg-light);
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  box-sizing: border-box;
+  color: var(--color-text-dark);
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: 5px;
+  font-size: 0.75em;
+  color: var(--color-dark-blue);
+  font-weight: 500;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.login-link a {
+  color: var(--color-dark-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

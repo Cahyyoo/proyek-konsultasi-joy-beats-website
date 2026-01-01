@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class pemesanan_permainan extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function permainan() {
+        return $this->BelongsTo(permainan::class);
+    }
 }

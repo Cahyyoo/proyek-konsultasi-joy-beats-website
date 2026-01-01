@@ -10,4 +10,8 @@ class permainan extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function pemesanan_permainan() {
+        return $this->HasOne(pemesanan_permainan::class);
+    }
 }

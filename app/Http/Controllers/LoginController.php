@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pemesanan_makanan;
+use App\Models\Makanan;
+use App\Models\Minuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DataMahasiswa;
 
 class LoginController extends Controller
 {
@@ -24,9 +26,9 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
             if(Auth::user()->role == "admin") {
-                return redirect("/admin/dashboard");
-            } else if(Auth::user()->role == "mhs") {
-                return redirect("/mhs/dashboard");
+                return redirect("/dashboard");
+            } else if(Auth::user()->role == "kasir") {
+                return redirect("/dashboard");
             }
 
         } else {
@@ -48,15 +50,15 @@ class LoginController extends Controller
         return redirect('/' . Auth::user()->role .'/dashboard');
     }
 
-    public function dashboard_admin() {
-        $dataNetw = DataMahasiswa::where('rekomendasi_kbk', 'Network & Security')->count();
-        $dataIntell = DataMahasiswa::where('rekomendasi_kbk', 'Intelligence System')->count();
-        $dataEmbedd = DataMahasiswa::where('rekomendasi_kbk', 'Embedded System')->count();
-        // dd($dataEmbedd);
+    public function dashboard_admin()
+    {
         return view('admin.dashboard', [
-            'dataNetw' => $dataNetw,
-            'dataIntell' => $dataIntell,
-            'dataEmbedd' => $dataEmbedd
+            'totalTransaksi' => pemesanan_makanan::distinct('kode_transaksi')->count('kode_transaksi'),
+            'totalPendapatan' => pemesanan_makanan::sum('jumlah_harga'),
+            'totalMakanan' => Makanan::count(),
+            'totalMinuman' => Minuman::count(),
+            'latestOrders' => pemesanan_makanan::latest()->limit(5)->get()
         ]);
     }
+
 }

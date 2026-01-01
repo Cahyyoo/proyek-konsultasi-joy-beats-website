@@ -1,108 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Sirena</title>
-        <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            * {
-                font-family: "Open Sans", serif;
-            }
-        </style>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary d-flex justify-content-between align-items-center" style="padding:0 5vw">
-            <!-- Navbar Brand-->
-            <div class="">
-                <a class="navbar ps-3 pe-3 text-decoration-none d-flex justify-content-between" href="/">
-                    <div class="text-light" style="font-size: 20px;">Joy & Beats</div>
-                    <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0 d-inline-block" id="sidebarToggle" href="#!" ><i class="fas fa-bars"></i></button>
-                </a>
-            </div>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown d-flex align-items-center">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="dropdown-item" type="submit" onclick="return(confirm('Apakah anda yakin untuk logout?'))">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion" style="border-right: 1px solid #99999950">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Menu</div>
-                            @if(Auth::user()->role == 'admin')
-                            <a class="nav-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}" href="/admin/dashboard">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <a class="nav-link {{ Request::is('admin/data-pemesanan-makanan-minuman*') ? 'active' : '' }}" href="/admin/data-pemesanan-makanan-minuman">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
-                                Data Pemesanan Makanan & Minuman
-                            </a>
-                            <a class="nav-link {{ Request::is('admin/data-permainan*') ? 'active' : '' }}" href="/admin/data-permainan">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
-                                Data Permainan
-                            </a>
-                            <a class="nav-link {{ Request::is('admin/data-barcode*') ? 'active' : '' }}" href="/admin/data-barcode">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
-                                Data Barcode
-                            </a>
-                            <a class="nav-link {{ Request::is('admin/data-makanan*') ? 'active' : '' }}" href="/admin/data-makanan">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
-                                Data Makanan
-                            </a>
-                            <a class="nav-link {{ Request::is('admin/data-minuman*') ? 'active' : '' }}" href="/admin/data-minuman">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
-                                Data Minuman
-                            </a>
-                            @endif
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="mx-5 my-4">
-                        <h2>@yield('header')</h2>
-                        @yield('content')
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Sirena 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+    <title>Joy & Bites | Admin Panel</title>
+
+    {{-- Bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {{-- Font & Icons --}}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --primary-dark: #0a58ca;
+            --bg-soft: #f4f7fb;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-soft);
+            color: var(--text-dark);
+        }
+
+        /* ================= NAVBAR ================= */
+        .topbar {
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .topbar .brand {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: .5px;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .sidebar {
+            width: 250px;
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .sidebar .menu-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #9ca3af;
+            padding: 16px 20px 6px;
+            text-transform: uppercase;
+        }
+
+        .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 4px 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-weight: 500;
+            color: #374151;
+            transition: all .25s ease;
+        }
+
+        .sidebar .nav-link i {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .sidebar .nav-link:hover {
+            background: #eef2ff;
+            transform: translateX(3px);
+        }
+
+        .sidebar .nav-link.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(13,110,253,.35);
+        }
+
+        .sidebar .nav-link.active i {
+            color: #fff;
+        }
+
+        /* ================= CONTENT ================= */
+        main {
+            padding: 28px;
+            min-height: calc(100vh - 64px);
+        }
+
+        .page-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .content-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #fff;
+            border-top: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+{{-- TOPBAR --}}
+<nav class="navbar topbar px-4 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm btn-light">
+            <i class="fas fa-bars"></i>
+        </button>
+        <span class="text-white brand">Joy & Bites</span>
+    </div>
+
+    <div class="dropdown">
+        <a class="text-white dropdown-toggle text-decoration-none"
+           href="#" data-bs-toggle="dropdown">
+            <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button class="dropdown-item text-danger"
+                        onclick="return confirm('Yakin logout?')">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="d-flex">
+
+    {{-- SIDEBAR --}}
+    <aside class="sidebar vh-100">
+        <div class="menu-title">Main Menu</div>
+
+        <a href="/admin/dashboard"
+           class="nav-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+            <i class="fas fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        @if(Auth::user()->role === 'kasir')
+
+        <a href="/admin/data-pemesanan-makanan-minuman"
+           class="nav-link {{ Request::is('kasir/data-pemesanan-makanan-minuman*') ? 'active' : '' }}">
+            <i class="fas fa-receipt"></i>
+            Pemesanan
+        </a>
+
+        @endif
+
+        @if(Auth::user()->role === 'admin')
+
+        <a href="/admin/data-permainan"
+           class="nav-link {{ Request::is('admin/data-permainan*') ? 'active' : '' }}">
+            <i class="fas fa-gamepad"></i>
+            Permainan
+        </a>
+
+        <a href="/admin/data-barcode"
+           class="nav-link {{ Request::is('admin/data-barcode*') ? 'active' : '' }}">
+            <i class="fas fa-barcode"></i>
+            Barcode
+        </a>
+
+        <a href="/admin/data-makanan"
+           class="nav-link {{ Request::is('admin/data-makanan*') ? 'active' : '' }}">
+            <i class="fas fa-utensils"></i>
+            Makanan
+        </a>
+
+        <a href="/admin/data-minuman"
+           class="nav-link {{ Request::is('admin/data-minuman*') ? 'active' : '' }}">
+            <i class="fas fa-mug-hot"></i>
+            Minuman
+        </a>
+
+        @endif
+    </aside>
+
+    {{-- CONTENT --}}
+    <main class="flex-fill">
+        <h4 class="page-title">@yield('header')</h4>
+
+        <div class="content-card">
+            @yield('content')
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" ></script>
-        <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    </body>
+    </main>
+
+</div>
+
+<footer class="py-3 px-4 d-flex justify-content-between">
+    <span>© {{ date('Y') }} Joy & Bites</span>
+    <span class="text-muted">Admin Panel</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

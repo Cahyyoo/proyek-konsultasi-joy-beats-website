@@ -1,0 +1,365 @@
+/* --- Palet Warna --- */
+:root {
+    --color-dark-blue: #0f1a2a;
+    --color-light-blue: #1a3250;
+    --color-blue-accent: #1e3a8a;
+    --color-orange: #ff5722;
+    --color-yellow: #ffc107;
+    --color-white: #ffffff;
+    --color-text-light: #e0e0e0;
+    --color-text-dark: #343a40;
+}
+
+/* --- Global --- */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--color-dark-blue);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Ini adalah styling header --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 22px 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-yellow);
+}
+
+.nav-links .btn {
+    margin-left: 30px;
+    padding: 8px 20px;
+    font-size: 0.9em;
+    width: auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow {
+    background-color: var(--color-yellow);
+    color: var(--color-white) !important;
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e0ac00;
+    color: #000000 !important;
+    transform: translateY(-2px);
+}
+
+/* --- Ini adalah styling section --- */
+.section-content {
+    padding: 120px 0 60px 0;
+    min-height: 80vh;
+}
+
+.bg-yellow {
+    background-color: var(--color-yellow);
+}
+
+.bg-orange {
+    background-color: var(--color-orange);
+}
+
+.section-title {
+    color: var(--color-white);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Ini adalah styling card grid --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--color-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.price-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.timer-text {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ff0000;
+    margin-top: 2px;
+    font-family: "Poppins", sans-serif;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #000;
+}
+
+/* --- Ini adalah styling food card --- */
+.food-card .card-img-header {
+    background-color: #1a45a3;
+    padding: 0;
+    position: relative;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.food-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: transform 0.3s;
+}
+
+.food-card:hover img {
+    transform: scale(1.1);
+}
+
+.food-card .img-title {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    color: white;
+    text-align: right;
+    font-size: 1rem;
+    line-height: 1.1;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--color-yellow);
+    color: #000;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.food-card .desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.counter button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+/* --- Ini adalah styling game card --- */
+.game-card .game-img-box {
+    height: 200px;
+    overflow: hidden;
+}
+
+.game-card .game-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.game-card:hover .game-img-box img {
+    transform: scale(1.05);
+}
+
+.sub-text {
+    color: #888;
+    font-size: 0.9em;
+    margin: -5px 0 10px 0;
+}
+
+.info-text {
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.slot-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.slot-timer {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.slot-timer.text-red {
+    color: #ff0000;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+/* --- Ini adalah styling background section makanan --- */
+#makanan {
+    background-image: url("background_burger.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* --- Ini adalah styling background section games --- */
+#games {
+    background-image: url("background_games.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toast {
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    background: #1abc9c;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.5s ease, fadeOut 0.5s ease 3s forwards;
+    z-index: 9999;
+}
+
+.toast i {
+    font-size: 18px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}

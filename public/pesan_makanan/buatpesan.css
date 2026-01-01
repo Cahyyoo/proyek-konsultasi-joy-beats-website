@@ -1,0 +1,307 @@
+/* --- Palet Warna --- */
+:root {
+    --color-dark-blue: #0f1a2a;
+    --color-light-blue: #1a3250;
+    --color-orange: #ff5722;
+    --color-yellow: #ffc107;
+    --color-white: #ffffff;
+    --color-text-light: #e0e0e0;
+    --color-text-dark: #343a40;
+    --color-gray-bg: #f8f9fa;
+}
+
+/* --- Global Reset --- */
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--color-text-dark);
+    /* Flexbox untuk layout vertikal */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Background Fixed --- */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("background.png") no-repeat center center/cover;
+}
+
+/* ========================================================== */
+/* --- STYLING NAVBAR (COPY DARI PESAN.CSS) --- */
+/* ========================================================== */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 22px 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-yellow);
+}
+
+.nav-links .btn {
+    margin-left: 30px;
+    padding: 8px 20px;
+    font-size: 0.9em;
+    width: auto;
+}
+
+/* --- Style Button Global --- */
+.btn {
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-yellow {
+    background-color: var(--color-yellow);
+    color: var(--color-white) !important;
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e0ac00;
+    color: #000000 !important;
+    transform: translateY(-2px);
+}
+/* ========================================================== */
+/* --- AKHIR STYLING NAVBAR --- */
+/* ========================================================== */
+
+/* --- Layout Utama Checkout --- */
+.checkout-container {
+    flex: 1; /* Mengisi sisa ruang */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 0 60px 0; /* Padding atas besar agar tidak ketutup navbar */
+}
+
+/* Kartu Utama */
+.checkout-card {
+    background-color: var(--color-white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex; /* Layout 2 Kolom */
+    overflow: hidden;
+    width: 100%;
+    min-height: 500px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-dark-blue);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    text-transform: uppercase;
+}
+
+/* --- Kolom Kiri: Detail Pesanan --- */
+.order-section {
+    flex: 1.5; /* 60% Lebar */
+    padding: 40px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-img-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.item-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.item-price {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.item-qty {
+    background-color: var(--color-gray-bg);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--color-dark-blue);
+    margin-right: 20px;
+}
+
+.item-total {
+    font-weight: 800;
+    color: var(--color-orange);
+    font-size: 1.1rem;
+}
+
+/* --- Kolom Kanan: Pembayaran --- */
+.payment-section {
+    flex: 1; /* 40% Lebar */
+    background-color: var(--color-gray-bg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.summary-box {
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.total-row {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--color-dark-blue);
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px dashed #ccc;
+}
+
+/* Area QR */
+.qr-area {
+    text-align: center;
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.qr-area p {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+    font-size: 0.9rem;
+}
+
+.qr-box img {
+    width: 150px;
+    height: 150px;
+}
+
+/* Tombol Bayar Penuh */
+.btn-block {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* --- Responsif --- */
+@media (max-width: 900px) {
+    .checkout-card {
+        flex-direction: column;
+    }
+    .order-section,
+    .payment-section {
+        width: 100%;
+        flex: auto;
+    }
+}

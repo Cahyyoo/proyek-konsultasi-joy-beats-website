@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('dapur', ApiController::class);
+Route::get('dapur', [ApiController::class, 'index']);
 Route::post('login', [ApiController::class, 'login']);

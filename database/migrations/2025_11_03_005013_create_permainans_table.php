@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("no_permainan");
             $table->enum('jenis_permainan', ['bl', 'ps', 'rs']);
+            $table->string("harga_per_jam");
             $table->timestamps();
         });
     }

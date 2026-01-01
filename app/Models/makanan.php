@@ -10,4 +10,8 @@ class makanan extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function pemesanan_makanan() {
+        return $this->HasOne(pemesanan_makanan::class);
+    }
 }
