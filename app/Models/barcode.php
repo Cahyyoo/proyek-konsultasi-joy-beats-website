@@ -11,7 +11,8 @@ class barcode extends Model
 
     protected $fillable = [
         'img',
-        'ket_barcode'
+        'ket_barcode',
+        'uuid'
     ];
 
 }

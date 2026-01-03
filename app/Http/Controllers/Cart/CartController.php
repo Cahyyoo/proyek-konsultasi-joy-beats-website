@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index($id)
     {
         $cart = session('cart', []);
 
-        return view('user.pesan_makanan.cart', compact('cart'));
+        return view('user.pesan_makanan.cart', compact('cart', 'id'));
     }
 
     public function add(Request $request)

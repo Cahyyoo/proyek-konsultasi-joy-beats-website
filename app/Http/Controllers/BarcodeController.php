@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\barcode;
 use Illuminate\Http\Request;
+use App\Helpers\QrHelper;
+use Illuminate\Support\Str;
 
 class BarcodeController extends Controller
 {
@@ -32,17 +34,41 @@ class BarcodeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'img' => 'required',
-            'ket_barcode' => 'required',
+            'ket_barcode' => 'required|string|max:255',
         ]);
 
-        $validatedData['img'] = $request->file('img')->store('barcode-images');
+        $validatedData['img'] = '';
+        $validatedData['uuid'] = Str::uuid();
+
+        // Simpan data ke database terlebih dahulu
+        $barcode = Barcode::create($validatedData);
+
+        // Generate URL tujuan: host/pesan-makanan/{uuid}
+        $qrContent = url("/pesan-makanan/{$barcode->uuid}");
+
+        // Nama file QR
+        $fileName = 'qr_' . Str::slug($validatedData['ket_barcode']) . '_' . time() . '.png';
+        $qrPath = 'barcode-images/' . $fileName;
+        $fullPath = storage_path('app/public/' . $qrPath);
 
         try {
-            Barcode::create($validatedData);
-            return redirect('/admin/data-barcode')->with('success', 'Data berhasil ditambahkan!');
+            // Generate QR code berisi URL
+            QrHelper::generateToFile($qrContent, $fullPath, 300);
+
+            // Simpan path QR ke database
+            $barcode->update(['img' => $qrPath]);
+
+            return redirect('/admin/data-barcode')->with('success', 'QR Code berhasil dibuat!');
         } catch (\Throwable $th) {
-            return redirect('/admin/data-barcode')->with('danger', 'Data gagal ditambahkan!');
+            // Hapus data dari DB jika gagal generate QR
+            $barcode->delete();
+
+            // Hapus file jika sempat terbuat
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+
+            return back()->with('danger', 'Gagal membuat QR Code: ' . $th->getMessage());
         }
     }
 
@@ -52,38 +78,6 @@ class BarcodeController extends Controller
     public function show(barcode $data_barcode)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(barcode $data_barcode)
-    {
-        return view("admin.data_barcode.edit", [
-            'data_barcode' => $data_barcode
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, barcode $data_barcode)
-    {
-
-        $validatedData = $request->validate([
-            'ket_barcode' => 'required',
-        ]);
-
-        if($request->img) {
-            $validatedData['img'] = $request->file('img')->store('barcode-images');
-        }
-
-        try {
-            Barcode::where('id', $data_barcode->id)->update($validatedData);
-            return redirect('/admin/data-barcode')->with('success', 'Data berhasil diedit!');
-        } catch (\Throwable $th) {
-            return redirect('/admin/data-barcode')->with('danger', 'Data gagal diedit!');
-        }
     }
 
     /**

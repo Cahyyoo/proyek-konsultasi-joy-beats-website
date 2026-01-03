@@ -173,7 +173,7 @@
                 </div>
 
                 {{-- PINDAH KE HALAMAN PEMBAYARAN --}}
-                <form action="{{ route('pembayaran.makanan') }}" method="GET">
+                <form action="{{ route('pembayaran.makanan', $id) }}" method="GET">
                     <button class="btn btn-yellow btn-block">
                         LANJUT KE PEMBAYARAN
                     </button>

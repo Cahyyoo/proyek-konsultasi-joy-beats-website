@@ -125,7 +125,7 @@
                 <img src="{{ asset('pesan_tempat/logo.png') }}" alt="Joy N Bites Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="{{ route('cart.index') }}">CART</a></li>
+                <li><a href="{{ route('cart.index', $id) }}">CART</a></li>
             </ul>
         </nav>
     </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form id="kasir-form" action="/admin/data-pemesanan-makanan-minuman" method="POST">
+<form id="kasir-form" action="/kasir/data-pemesanan-makanan-minuman" method="POST">
 @csrf
 
 <div class="row">

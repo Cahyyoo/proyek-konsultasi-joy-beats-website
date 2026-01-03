@@ -50,7 +50,7 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
-Route::get('/pembayaran-makanan', [CheckoutController::class, 'pembayaranMakanan'])
+Route::get('/pembayaran-makanan/{id}', [CheckoutController::class, 'pembayaranMakanan'])
     ->name('pembayaran.makanan');
 Route::get('/invoice/{transaksi}', [InvoiceController::class, 'show'])
     ->name('invoice.show');

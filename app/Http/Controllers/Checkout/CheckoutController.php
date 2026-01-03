@@ -95,6 +95,7 @@ class CheckoutController extends Controller
             'total'      => $totalHarga,
             'grandTotal' => $grandTotal,
             'snapToken'  => $snapToken,
+            'id' => $id
         ]);
     }
 }

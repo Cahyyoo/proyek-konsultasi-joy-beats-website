@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('barcodes', function (Blueprint $table) {
             $table->id();
             $table->string("img");
+            $table->string("uuid");
             $table->string("ket_barcode");
             $table->timestamps();
         });

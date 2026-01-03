@@ -2,6 +2,7 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joy & Bites: Kenikmatan Lezat, Keseruan Tanpa Batas!</title>
 
@@ -19,7 +20,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('landing_page/assets/css/landing.css') }}" />
+    <link rel="stylesheet" href="{{ asset('landing_page/assets/css/landing.css') }}" type="text/css"/>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>

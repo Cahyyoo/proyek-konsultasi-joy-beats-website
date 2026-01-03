@@ -32,7 +32,7 @@
             document.getElementById('pay-button').onclick = function(){
                 snap.pay("{{ $snapToken }}", {
                     onSuccess: function(result){
-                        window.location.href = "/admin/data-pemesanan-makanan-minuman?status=success";
+                        window.location.href = "/kasir/data-pemesanan-makanan-minuman?status=success";
                         console.log(result);
                     },
                     onPending: function(result){ console.log(result); },

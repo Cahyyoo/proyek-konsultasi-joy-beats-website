@@ -30,6 +30,7 @@
                 <tr>
                     <th>No</th>
                     <th>Gambar Barcode</th>
+                    <th>Link Barcode</th>
                     <th>Keterangan Barcode</th>
                     <th colspan="2" class="text-center">Opsi</th>
                 </tr>
@@ -41,19 +42,14 @@
                         <td>
                             <img src="{{ asset('storage/' . $data->img) }}" alt="gambar-{{ $data->ket_barcode }}" style="width: 150px; height: 150px">
                         </td>
+                        <td><a href="{{ url("/pesan-makanan/$data->uuid") }}">{{ url("/pesan-makanan/$data->uuid") }}</a></td>
                         <td>{{ $data->ket_barcode }}</td>
-                        <td class="text-center" width=10>
-                            <div class="">
-                                <a href="/admin/data-barcode/{{ $data->id }}/edit"><i class="fa-solid fa-pen-to-square"></i>edit</a></td>
-                            </div>
-                        </td>
                         <td class="text-center" width=10>
                             <form action="/admin/data-barcode/{{ $data->id }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return(confirm('Apakah anda yakin untuk menghapus data ini?'))" style="border: none; background-color:transparent; color:blue">
                                     <i class="fa-solid fa-trash"></i>
-                                    hapus
                                 </button>
                             </form>
                         </td>

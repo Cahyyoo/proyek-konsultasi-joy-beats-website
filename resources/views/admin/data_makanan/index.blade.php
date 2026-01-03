@@ -46,7 +46,7 @@
                         <td>{{ $data->harga }}</td>
                         <td class="text-center" width=10>
                             <div class="">
-                                <a href="/admin/data-makanan/{{ $data->id }}/edit"><i class="fa-solid fa-pen-to-square"></i>edit</a></td>
+                                <a href="/admin/data-makanan/{{ $data->id }}/edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             </div>
                         </td>
                         <td class="text-center" width=10>
@@ -55,7 +55,6 @@
                                 @method('delete')
                                 <button type="submit" onclick="return(confirm('Apakah anda yakin untuk menghapus data ini?'))" style="border: none; background-color:transparent; color:blue">
                                     <i class="fa-solid fa-trash"></i>
-                                    hapus
                                 </button>
                             </form>
                         </td>

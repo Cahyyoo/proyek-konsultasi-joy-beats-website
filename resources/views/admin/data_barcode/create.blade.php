@@ -9,7 +9,7 @@
 
             <div class="mb-3">
                 <label for="img" class="form-label">Gambar:</label>
-                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onchange="previewImage()">
+                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" onchange="previewImage()">
                 @error('img')
                     <div class="invalid-feedback">
                         {{ $message }}

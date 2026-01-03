@@ -153,15 +153,15 @@
     <aside class="sidebar vh-100">
         <div class="menu-title">Main Menu</div>
 
-        <a href="/admin/dashboard"
-           class="nav-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+        <a href="/dashboard"
+           class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
             <i class="fas fa-chart-line"></i>
             Dashboard
         </a>
 
         @if(Auth::user()->role === 'kasir')
 
-        <a href="/admin/data-pemesanan-makanan-minuman"
+        <a href="/kasir/data-pemesanan-makanan-minuman"
            class="nav-link {{ Request::is('kasir/data-pemesanan-makanan-minuman*') ? 'active' : '' }}">
             <i class="fas fa-receipt"></i>
             Pemesanan
@@ -211,7 +211,11 @@
 
 <footer class="py-3 px-4 d-flex justify-content-between">
     <span>© {{ date('Y') }} Joy & Bites</span>
-    <span class="text-muted">Admin Panel</span>
+    @if (Auth::user()->role == "admin")
+        <span class="text-muted">Admin Panel</span>
+    @else
+        <span class="text-muted">Kasir Panel</span>
+    @endif
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
