@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pemesanan_makanans', function (Blueprint $table) {
             $table->id();
             $table->string("barcode_id");
+            $table->string("kode_transaksi");
             $table->string("makanan_id");
             $table->string("minuman_id");
             $table->string("qty");

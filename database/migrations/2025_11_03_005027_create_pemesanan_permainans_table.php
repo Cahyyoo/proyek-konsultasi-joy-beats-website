@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("jam_selesai");
             $table->string("jumlah");
             $table->string("detail");
-            $table->enum('ket', ['belum', 'sedang', 'selesai']);
+            $table->enum('ket', ['Belum Dibayar', 'Sedang Dibayar', 'Sudah Dibayar']);
             $table->timestamps();
         });
     }
